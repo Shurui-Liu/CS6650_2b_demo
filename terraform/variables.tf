@@ -1,32 +1,55 @@
+# terraform/variables.tf
+# Variables for the starter repo structure
+
 # Region to deploy into
 variable "aws_region" {
-  type    = string
-  default = "us-west-2"
+  type        = string
+  default     = "us-east-1"
+  description = "AWS region for deployment"
 }
 
-# ECR & ECS settings
+# ECR settings
 variable "ecr_repository_name" {
-  type    = string
-  default = "ecr_service"
+  type        = string
+  default     = "ecommerce-product-api"
+  description = "Name of the ECR repository"
 }
 
+# ECS Service settings
 variable "service_name" {
-  type    = string
-  default = "CS6650L2"
+  type        = string
+  default     = "product-api-service"
+  description = "Name of the ECS service"
 }
 
 variable "container_port" {
-  type    = number
-  default = 8080
+  type        = number
+  default     = 8080
+  description = "Port the container listens on"
 }
 
 variable "ecs_count" {
-  type    = number
-  default = 1
+  type        = number
+  default     = 1
+  description = "Number of ECS tasks to run"
 }
 
-# How long to keep logs
+# CloudWatch Logs
 variable "log_retention_days" {
-  type    = number
-  default = 7
+  type        = number
+  default     = 7
+  description = "How long to keep CloudWatch logs (days)"
+}
+
+# Additional settings (optional)
+variable "container_cpu" {
+  type        = number
+  default     = 256
+  description = "CPU units for container (256 = 0.25 vCPU)"
+}
+
+variable "container_memory" {
+  type        = number
+  default     = 512
+  description = "Memory for container in MB"
 }
