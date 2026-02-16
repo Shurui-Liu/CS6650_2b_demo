@@ -386,7 +386,7 @@ curl -i http://$LB_URL/health
 
 **Screenshot:**
 
-*[INSERT YOUR SCREENSHOT HERE]*
+image.png
 
 ---
 
