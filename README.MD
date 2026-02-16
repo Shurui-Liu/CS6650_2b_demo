@@ -385,9 +385,7 @@ curl -i http://$LB_URL/health
 ```
 
 **Screenshot:**
-
-image.png
-
+![Alt Text](./images_screenshots/Screenshot%202026-02-16%20200.png)
 ---
 
 ### 2. Create Product - 204 No Content ✅
@@ -408,7 +406,7 @@ curl -i -X POST http://$LB_URL/products/1/details \
 
 **Screenshot:**
 
-*[INSERT YOUR SCREENSHOT HERE]*
+![Alt Text](./images_screenshots/Screenshot%202026-02-16%20204.png)
 
 ---
 
@@ -419,9 +417,7 @@ curl -i -X POST http://$LB_URL/products/1/details \
 curl -i http://$LB_URL/products/1
 ```
 
-**Screenshot:**
-
-*[INSERT YOUR SCREENSHOT HERE]*
+![Alt Text](./images_screenshots/Screenshot%20200.png)
 
 ---
 
@@ -434,7 +430,7 @@ curl -i http://$LB_URL/products/999
 
 **Screenshot:**
 
-*[INSERT YOUR SCREENSHOT HERE]*
+![Alt Text](./images_screenshots/Screenshot%20404.png)
 
 **Expected Response:**
 ```json
@@ -447,25 +443,10 @@ curl -i http://$LB_URL/products/999
 
 ---
 
-### 5. Empty SKU - 400 Bad Request ❌
-
-**Command:**
-```bash
-curl -i -X POST http://$LB_URL/products/2/details \
-  -H "Content-Type: application/json" \
-  -d '{
-    "product_id": 2,
-    "sku": "",
-    "manufacturer": "TestCorp",
-    "category_id": 1,
-    "weight": 100,
-    "some_other_id": 1
-  }'
-```
-
+### 5. Invalid ID - 400 Bad Request ❌
 **Screenshot:**
 
-*[INSERT YOUR SCREENSHOT HERE]*
+![Alt Text](./images_screenshots/Screenshot%20400.png)
 
 **Expected Response:**
 ```json
@@ -478,120 +459,6 @@ curl -i -X POST http://$LB_URL/products/2/details \
 
 ---
 
-### 6. Negative Category ID - 400 Bad Request ❌
-
-**Command:**
-```bash
-curl -i -X POST http://$LB_URL/products/3/details \
-  -H "Content-Type: application/json" \
-  -d '{
-    "product_id": 3,
-    "sku": "TEST-001",
-    "manufacturer": "TestCorp",
-    "category_id": -1,
-    "weight": 100,
-    "some_other_id": 1
-  }'
-```
-
-**Screenshot:**
-
-*[INSERT YOUR SCREENSHOT HERE]*
-
-**Expected Response:**
-```json
-{
-  "error": "INVALID_INPUT",
-  "message": "Invalid product data",
-  "details": "category_id must be a positive integer"
-}
-```
-
----
-
-### 7. Negative Weight - 400 Bad Request ❌
-
-**Command:**
-```bash
-curl -i -X POST http://$LB_URL/products/4/details \
-  -H "Content-Type: application/json" \
-  -d '{
-    "product_id": 4,
-    "sku": "TEST-002",
-    "manufacturer": "TestCorp",
-    "category_id": 1,
-    "weight": -100,
-    "some_other_id": 1
-  }'
-```
-
-**Screenshot:**
-
-*[INSERT YOUR SCREENSHOT HERE]*
-
-**Expected Response:**
-```json
-{
-  "error": "INVALID_INPUT",
-  "message": "Invalid product data",
-  "details": "weight must be non-negative"
-}
-```
-
----
-
-### 8. Product ID Mismatch - 400 Bad Request ❌
-
-**Command:**
-```bash
-curl -i -X POST http://$LB_URL/products/5/details \
-  -H "Content-Type: application/json" \
-  -d '{
-    "product_id": 999,
-    "sku": "TEST-003",
-    "manufacturer": "TestCorp",
-    "category_id": 1,
-    "weight": 100,
-    "some_other_id": 1
-  }'
-```
-
-**Screenshot:**
-
-*[INSERT YOUR SCREENSHOT HERE]*
-
-**Expected Response:**
-```json
-{
-  "error": "INVALID_INPUT",
-  "message": "Product ID mismatch",
-  "details": "Product ID in URL must match product_id in request body"
-}
-```
-
----
-
-### 9. Invalid JSON - 400 Bad Request ❌
-
-**Command:**
-```bash
-curl -i -X POST http://$LB_URL/products/6/details \
-  -H "Content-Type: application/json" \
-  -d 'invalid json'
-```
-
-**Screenshot:**
-
-*[INSERT YOUR SCREENSHOT HERE]*
-
-**Expected Response:**
-```json
-{
-  "error": "INVALID_INPUT",
-  "message": "Invalid JSON body",
-  "details": "invalid character 'i' looking for beginning of value"
-}
-```
 
 ---
 
